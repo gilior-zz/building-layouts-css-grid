@@ -6,7 +6,7 @@ body {
     margin: 0;
     display: grid;
     grid-template-rows: auto 50px;
-    grid-template-columns: 12% auto;
+    grid-template-columns: fit-content(12%) auto;
     grid-template-areas: "sidebar right" "footer footer";
 }
 
@@ -44,6 +44,7 @@ ul li a {
 header {
     background-color: #41c7c7;
     display: grid;
+    grid-area: head;
     /*grid-template-columns:20% 80% ;*/
     /*grid-template-columns: 20% auto;*/
     /*grid-template-columns:repeat(2,auto) ;*/
@@ -56,6 +57,7 @@ section#hero {
     border-top: 5px solid #2ea0a0;
     display: grid;
     grid-template-columns: repeat(2, auto);
+    grid-area: hero;
 }
 
 #content h1 {
@@ -88,7 +90,8 @@ img {
 
 .main {
     grid-area: right;
-    grid-template-rows: 51px fit-content(30%) 40%;
+    grid-template-rows: 51px fit-content(30%) 40% auto;
+    grid-template-areas: "head" "hero" "invention" "features";
     /*grid-template-columns: 200px 200px;*/
     /*justify-content: center;*/
     /*justify-content: space-around;*/
@@ -119,6 +122,7 @@ footer {
 
 #features i {
     font-size: 2em;
+    grid-area: features;
 }
 
 ul#featres {
@@ -129,7 +133,7 @@ ul#featres {
 ul#features li {
     background-color: lightgray;
     padding: 1em;
-    align-self:start ;
+    align-self: start;
     /*width: 10%;*/
 }
 
@@ -159,15 +163,123 @@ ul#features p {
     color: #4c4c4c;
 }
 
-section#info{
+section#info {
     background-color: #f2f2f2;
     padding: 2em;
     display: grid;
     grid-template-columns: 1.5fr 1.5fr;
     align-items: space-around;
+    grid-area: invention;
 }
 
-#mountain-vector{
+#mountain-vector {
     width: 200px;
     align-self: center;
 }
+
+@media screen and (max-width: 60em) {
+    .sidebar {
+        display: none;
+    }
+
+    body {
+
+        grid-template-columns: auto;
+        grid-template-areas: " right" " footer";
+    }
+
+    .main {
+
+        grid-template-areas: "head" "hero" "features"
+    "invention";
+    }
+
+    #features {
+
+        grid-template-columns: repeat(2, auto);
+        grid-template-rowa: repeat(3, auto);
+
+
+    }
+
+    ul#features li:last-child{
+        grid-column: 1/span 2;
+    }
+
+}
+
+@media screen and (max-width: 40em){
+    header {
+
+        grid-template-columns: auto;
+        grid-template-rows: repeat(2,auto);
+    }
+
+    .main {
+
+        grid-template-rows: auto fit-content(30%) 40% auto;
+
+    }
+
+    #logo{
+        margin-left: 0;
+    }
+
+    nav ul{
+        margin: 0;
+        padding: 0;
+        float: none;
+        width: 100%;
+    }
+
+    nav ul li a{
+        calc(25%-35px);
+        display: inline-block;
+        font-size: .9em;
+    }
+
+    section#hero. section#info{
+        grid-template-columns: auto;text-align: center;
+    }
+
+    .main {
+
+        grid-template-areas: "head" "hero"
+        "invention" "features";
+    }
+
+    h1,h2{
+        font-size: 1.2em;
+    }
+
+    #mountain{
+        width: 100px;
+        height: 100px;
+    }
+
+    #content p,#content2 p{
+        font-size: .9em;
+    }
+
+    #features{
+        grid-template-columns: repeat (2,auto);
+        grid-template-rows: repeat (4,auto);
+    }
+
+    ul#features li:nth-child(1),ul#features li:nth-child(2){
+        grid-column: 1/span 2;
+    }
+
+    footer{
+        background-color: #41c7c7;
+    }
+
+    footer p{
+        color: white;
+        text-align: center;
+    }
+
+
+
+}
+
